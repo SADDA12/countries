@@ -1,0 +1,29 @@
+header {
+  background-color: rgb(15, 15, 228);
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 0 20px;
+  border-radius: 15px;
+}
+
+header button {
+  margin-top: 30px;
+}
+
+header ul {
+  margin-top: 30px;
+  display: flex;
+  gap: 40px;
+}
+
+header li {list-style-type: none;}
+
+.links {
+  text-decoration: none;
+  color: white;
+}
+
+.welcomeMsg {text-align: center;}
+
+.aboutUs {text-align: center;}

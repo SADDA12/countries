@@ -1,0 +1,6 @@
+display countries
+go to the box
+*i want to pick 5 items
+pick 1 item first
+count whiles picking
+repeat the steps till we get 5
