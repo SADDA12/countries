@@ -1,56 +1,38 @@
+import {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
+
 import Navbar from "../components/navbar";
 import axios from "axios";
 
 export default function Countries() {
+  const [ country, setCountry] = useState([]);
+
+
     const url = 'https://restcountries.com/v3.1/all';
+    console.log(url)
 
-    // function displayCountries() {
-    //     let allCountries = fetch(url).then((response) => {
-    //         console.log('country', response.json());
-    //     }
+    useEffect(() => {
 
-    //     )
-    // }
+      async function displayAllCountries() {
+        try {
+        const countries = await axios.get(url)
+        const countriesBox = countries.data
+        setCountry(countriesBox)
+          
+        } catch (error) {
+          console.log(error)
+          
+        }
+        
+      }
 
-    // displayCountries()
-
-
-    async function displayAllCountries() {
-      const countries = await axios.get(url)
-
-      const countriesBox = countries.data
-
-      const slicedData = countriesBox.slice(0, 5);
-
-
-     slicedData.map(country => {
-    console.log(country.name.common);
-  });
-
- return countriesBox;
-}
-
- displayAllCountries()
- 
+      displayAllCountries()
   
 
 
+    }, [])
 
-//     function getFiveArrays(countries){
-//       for(let i=0; i <= 4 && i < countries.length; i++){
-//         console.log(countries[i]);
-//       }
-//     }
-
-    
-// async function displayAllCountries() {
-//     const countries = await fetch(url).then(res => res.json())
-//     console.log("countries", countries)
-//     getFiveArrays(countries)
-// }
-
-// displayAllCountries()
-
+    console.log('country', country)
 
 
 
@@ -58,8 +40,21 @@ export default function Countries() {
   return (
     <>
       <Navbar />
-      <div>
-        <h1>This is my Countries Page</h1>
+        <h1 className="countries-txt">Countries</h1>
+
+      <div className="outer-div">
+        {country.slice(0, 12).map((item) => (
+          <div className="inner-div">
+            <h1>{item.name.common}</h1>
+            <h3>{item.name.official}</h3>
+            <img src={item.flags.png} alt={item.flags.alt} className="flag"/>
+            <button className="btn">
+              <Link className="btn-link" to={`/country/${item.name.common}`}>Learn more</Link>
+            </button>
+          </div>
+        )
+
+        )}
       </div>
 
     </>

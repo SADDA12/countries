@@ -18,9 +18,6 @@ export default function Navbar() {
         </ul>
     </div>
 
-    <div>
-        <button>Sign up</button>
-    </div>
     </header>
     
   )
